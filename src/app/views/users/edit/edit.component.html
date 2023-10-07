@@ -1,0 +1,46 @@
+<c-row ngPreserveWhitespaces>
+    <c-col xs="2">
+        <button class="btn btn-primary mb-4" (click)="back()">Back</button>
+    </c-col>
+    <c-col xs="12">
+        <c-alert color="success" *ngIf="succesAlert">{{ msgAlert }}</c-alert>
+        <c-card>
+            <c-card-header>
+                <strong>Form Edit Data</strong>
+            </c-card-header>
+            <c-card-body>
+                <form cForm #customStylesForm="ngForm"
+                (ngSubmit)="onSubmit()"
+                [validated]="customStylesValidated">
+                    <div class="mb-3">
+                        <label cLabel for="title-input">Title</label>
+                        <input cFormControl [(ngModel)]="editData.title" [ngModelOptions]="{standalone: true}"
+                                id="title-input"
+                                required
+                                type="text"
+                        />
+                        <c-form-feedback [valid]="false">Please fill in the title</c-form-feedback>
+                    </div>
+                    <div class="mb-3">
+                        <label cLabel for="body-input">Body</label>
+                        <textarea cFormControl [(ngModel)]="editData.body" [ngModelOptions]="{standalone: true}" required id="body-input" rows="3"></textarea>
+                        <c-form-feedback [valid]="false">Please fill in the body</c-form-feedback>
+                    </div>
+                    <div class="mb-3">
+                        <label cLabel for="userid-input">UserID</label>
+                        <input cFormControl
+                                id="userid-input"
+                                type="text"
+                                required
+                                [(ngModel)]="editData.userId" [ngModelOptions]="{standalone: true}"
+                        />
+                        <c-form-feedback [valid]="false">Please fill in the userid</c-form-feedback>
+                    </div>
+                    <div>
+                        <button class="btn btn-success">Update</button>
+                    </div>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

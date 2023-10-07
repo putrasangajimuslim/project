@@ -1,0 +1,50 @@
+<c-row ngPreserveWhitespaces>
+  <div id="myModal" class="modal" *ngIf="isModalOpen">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" style="text-align: end;" (click)="closeModal()">&times;</span>
+      <p>Are You Sure Delete this data?</p>
+
+      <div style="display: flex; justify-content: end;">
+        <button class="btn btn-light" style="margin-right: 8px;" (click)="closeModal()">Close</button>
+        <button class="btn btn-primary" (click)="deleteItem('ya')">Yes</button>
+      </div>
+    </div>
+  </div>
+
+  <c-col xs="2">
+    <button class="btn btn-primary mb-4" (click)="tambahItem()">Tambah Data</button>
+  </c-col>
+  <c-col xs="12">
+    <c-alert color="success" *ngIf="succesAlert">{{ msgAlert }}</c-alert>
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>Data List</strong>
+      </c-card-header>
+      <c-card-body>
+        <table cTable class="table">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Title</th>
+              <th scope="col">Body</th>
+              <th scope="col">UserId</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of post; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.title }}</td>
+              <td>{{ item.body }}</td>
+              <td>{{ item.userId }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="editItem(item.id)">Edit</button> <!-- Tombol Edit -->
+                <button class="btn btn-danger" (click)="deleteItem(item.id)">Delete</button> <!-- Tombol Delete -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
